@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "restautants",
+  "info": {
+    "singularName": "restautant",
+    "pluralName": "restautants",
+    "displayName": "Restautant"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "Description": {
+      "type": "blocks"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "restautants"
+    }
+  }
+}
