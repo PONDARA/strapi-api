@@ -1,19 +1,22 @@
 const LdapStrategy = require("passport-ldapauth");
 
 module.exports = ({ env }) => ({
+  url: 'admin/',
   auth: {
     secret: env('ADMIN_JWT_SECRET'),
-    provider:[
+    provider: [
       {
         uid: "google",
         displayName: "Ldap",
         icon: "https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Google-512.png",
-        createStrategy: (strapi) => new LdapStrategy({server:{
-          url: 'ldap.sabay.com:389',
-          searchBase: "dc=sabay,dc=test",
-          searchFilter: ""
-        }},(req, user, done)=>{
-          done(null,user)
+        createStrategy: (strapi) => new LdapStrategy({
+          server: {
+            url: 'ldap.sabay.com:389',
+            searchBase: "dc=sabay,dc=test",
+            searchFilter: ""
+          }
+        }, (req, user, done) => {
+          done(null, user)
         })
       }
     ]
